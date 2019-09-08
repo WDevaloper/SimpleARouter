@@ -11,6 +11,7 @@ import com.wfy.simple.library.Route;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -27,6 +28,7 @@ import javax.lang.model.element.TypeElement;
 
 import static com.wfy.simple.compiler.Constants.GENERATE_ROUTE_SUFFIX_NAME;
 import static com.wfy.simple.compiler.Constants.GENERATE_ROUTE_TABLE_PACKAGE;
+import static com.wfy.simple.compiler.Constants.MODULE_NAME;
 import static com.wfy.simple.compiler.Constants.SUPER_INTERFACE;
 
 public class RouterProcessor extends AbstractProcessor {
@@ -68,6 +70,8 @@ public class RouterProcessor extends AbstractProcessor {
         TypeSpec.Builder builder =
                 TypeSpec.classBuilder(GENERATE_ROUTE_SUFFIX_NAME + moduleName)
                         .addModifiers(Modifier.PUBLIC);
+
+
         TypeName superInterface = ClassName.bestGuess(SUPER_INTERFACE);
         builder.addSuperinterface(superInterface);
 
@@ -112,6 +116,14 @@ public class RouterProcessor extends AbstractProcessor {
         Set<String> annotations = new LinkedHashSet<>();
         annotations.add(Route.class.getCanonicalName());
         return annotations;
+    }
+
+
+    @Override
+    public Set<String> getSupportedOptions() {
+        HashSet<String> hashSet = new HashSet<>();
+        hashSet.add(MODULE_NAME);
+        return hashSet;
     }
 
     @Override

@@ -10,13 +10,6 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Executors
- *
- * @author 正纬 <a href="mailto:zhilong.liu@aliyun.com">Contact me.</a>
- * @version 1.0
- * @since 16/4/28 下午4:07
- */
 public class DefaultPoolExecutor extends ThreadPoolExecutor {
     //    Thread args
     private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();
@@ -51,12 +44,6 @@ public class DefaultPoolExecutor extends ThreadPoolExecutor {
         });
     }
 
-    /*
-     *  线程执行结束，顺便看一下有么有什么乱七八糟的异常
-     *
-     * @param r the runnable that has completed
-     * @param t the exception that caused termination, or null if
-     */
     @Override
     protected void afterExecute(Runnable r, Throwable t) {
         super.afterExecute(r, t);
